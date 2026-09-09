@@ -12,9 +12,11 @@ MONGODB_URI=mongodb://127.0.0.1:27017/leadflow
 JWT_SECRET=replace-with-a-long-random-secret
 CLIENT_URL=http://localhost:3002
 NODE_ENV=development
+AI_API_KEY=
+AI_PROVIDER=
 ```
 
-Then run:
+Install, seed, and run:
 
 ```bash
 npm install
@@ -24,7 +26,11 @@ npm run dev
 
 The API is available at `http://localhost:5000`.
 
-## Important endpoints
+## Security boundaries
+
+Protected routes require an httpOnly JWT cookie, a valid organization claim, and the required RBAC permission. Lead and task queries always include the authenticated organization ID.
+
+## Endpoints
 
 - `GET /api/health`
 - `POST /api/auth/register`
@@ -34,5 +40,14 @@ The API is available at `http://localhost:5000`.
 - `POST /api/leads`
 - `GET /api/leads/:id/score`
 - `GET /api/leads/:id/insights`
+- `GET /api/tasks?view=overdue|today|tomorrow|upcoming`
+- `POST /api/tasks`
+- `PATCH /api/tasks/:id`
+- `DELETE /api/tasks/:id`
 
-All authenticated lead reads and mutations are organization-scoped.
+## Build
+
+```bash
+npm run build
+npm start
+```

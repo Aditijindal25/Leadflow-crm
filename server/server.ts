@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import mongoose from 'mongoose';
 import leadRoutes from './routes/leadRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
 import { connectDatabase } from './config/db.js';
 import { apiRateLimiter, authRateLimiter } from './middleware/rateLimitMiddleware.js';
 import { errorHandler, notFoundHandler } from './middleware/errorMiddleware.js';
@@ -48,6 +49,7 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api/auth', authRateLimiter, authRoutes);
 app.use('/api/leads', leadRoutes);
+app.use('/api/tasks', taskRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

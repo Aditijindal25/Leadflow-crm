@@ -32,5 +32,13 @@
     "prisma": "^5.16.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
-  }
+  },
+  "description": "The active backend is an Express + TypeScript API backed by MongoDB and Mongoose.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
