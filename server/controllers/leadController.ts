@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { Lead } from '../models/Lead.js';
 import type { AuthenticatedRequest } from '../middleware/authMiddleware.js';
 import { scoreLead } from '../services/leadIntelligenceService.js';
+import { generateLeadInsight } from '../services/aiService.js';
 
 const leadSchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -16,7 +17,7 @@ const leadSchema = z.object({
   preferredContact: z.enum(['EMAIL', 'PHONE', 'WHATSAPP', 'ANY']).optional(),
   preferredContactDetail: z.string().trim().max(160).optional(),
   message: z.string().trim().max(5000).optional(),
-  status: z.enum(['NEW', 'CONTACTED', 'QUALIFIED', 'CONVERTED', 'LOST']).optional(),
+  status: z.enum(['NEW', 'CONTACTED', 'QUALIFIED', 'PROPOSAL', 'NEGOTIATION', 'CONVERTED', 'LOST', 'ON_HOLD']).optional(),
   priority: z.enum(['LOW', 'MEDIUM', 'HIGH']).optional(),
   followUpDate: z.coerce.date().optional(),
 });
@@ -45,7 +46,8 @@ export async function createLead(req: Request, res: Response) {
   const duplicate = await Lead.findOne({ organizationId, $or: [{ email: parsed.data.email }, ...(parsed.data.phone ? [{ phone: parsed.data.phone }] : [])] }).select('_id name email phone');
   if (duplicate) return res.status(409).json({ success: false, message: 'Potential duplicate lead found.', data: { duplicate } });
 
-  const lead = await Lead.create({ ...parsed.data, organizationId });
+  const intelligence = scoreLead(parsed.data);
+  const lead = await Lead.create({ ...parsed.data, organizationId, leadScore: intelligence.score, temperature: intelligence.temperature, nextAction: intelligence.nextAction, conversionProbability: intelligence.score / 100 });
   return res.status(201).json({ success: true, data: lead });
 }
 
@@ -136,14 +138,17 @@ export async function getLeadInsights(req: AuthenticatedRequest, res: Response) 
   const lead = await findScopedLead(req, res);
   if (!lead) return;
   const intelligence = scoreLead(lead);
+  const insight = await generateLeadInsight({ name: lead.name, company: lead.company, projectType: lead.projectType, budgetRange: lead.budgetRange, message: lead.message, ...intelligence });
   return res.json({
     success: true,
-    data: {
-      generatedBy: 'rule-based LeadFlow intelligence',
-      summary: `${lead.name}${lead.company ? ` from ${lead.company}` : ''} is a ${intelligence.temperature.toLowerCase()}-temperature prospect with a ${intelligence.score}/100 lead score.`,
-      nextBestAction: intelligence.nextAction,
-      qualification: intelligence.temperature === 'HOT' ? 'High intent' : intelligence.temperature === 'WARM' ? 'Needs qualification' : 'Early stage',
-      reasons: intelligence.reasons,
-    },
+    data: insight,
   });
+}
+
+export async function generateLeadSummary(req: AuthenticatedRequest, res: Response) {
+  const lead = await findScopedLead(req, res);
+  if (!lead) return;
+  const intelligence = scoreLead(lead);
+  const insight = await generateLeadInsight({ name: lead.name, company: lead.company, projectType: lead.projectType, budgetRange: lead.budgetRange, message: lead.message, ...intelligence });
+  return res.json({ success: true, data: insight });
 }
