@@ -2,6 +2,9 @@ node_modules/
 .env
 .env.*
 !.env.example
+!client/.env.example
+!client/.env.production.example
+!server/.env.example
 .DS_Store
 .next/
 dist/
