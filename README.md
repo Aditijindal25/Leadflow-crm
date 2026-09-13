@@ -291,6 +291,8 @@ The current verification baseline includes frontend production compilation, back
 - Output directory: `dist`
 - Variable: `VITE_API_URL=https://your-api.example.com/api`
 
+The repository includes `render.yaml` for the backend. In Vercel, import this repository, set the root directory to `client`, and add `VITE_API_URL` using the deployed Render API URL.
+
 ### Backend: Render or Railway
 
 - Root directory: `server`
@@ -304,6 +306,8 @@ The current verification baseline includes frontend production compilation, back
 - Add the deployment IP/network access rule
 - Use the Atlas connection string as `MONGODB_URI`
 - Set `CLIENT_URL` to the deployed frontend origin
+
+After the API is deployed, run the Mongo seed command against the production database once, then set the printed organization ID as `DEFAULT_ORGANIZATION_ID` in Render.
 
 ## Future Roadmap
 
