@@ -17,6 +17,7 @@ const app = express();
 const PORT = Number(process.env.PORT || 5000);
 const allowedOrigins = new Set([
   process.env.CLIENT_URL || 'http://localhost:3000',
+  'https://leadflow-crm-orcin.vercel.app',
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:3002',
@@ -24,7 +25,11 @@ const allowedOrigins = new Set([
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.has(origin)) {
+    if (
+  !origin ||
+  allowedOrigins.has(origin) ||
+  origin.endsWith('.vercel.app')
+) {
       callback(null, true);
       return;
     }
