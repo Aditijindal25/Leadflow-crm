@@ -13,6 +13,10 @@ import { errorHandler, notFoundHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
 
+if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET is required in production');
+}
+
 const app = express();
 const PORT = Number(process.env.PORT || 5000);
 const allowedOrigins = new Set([
@@ -21,6 +25,7 @@ const allowedOrigins = new Set([
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:3002',
+  'http://localhost:3003',
 ]);
 
 app.use(cors({

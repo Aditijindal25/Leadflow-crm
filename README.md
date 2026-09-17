@@ -1,8 +1,12 @@
-# LeadFlow CRM
+# Full Stack Web Development – Task 2 (2026)
+
+## Client Lead Management System (Mini CRM)
 
 > **Capture. Understand. Engage. Convert.**
 
-LeadFlow CRM is a multi-tenant lead management foundation for agencies, freelancers, consultants, startups, and small teams. It combines public lead capture, secure workspaces, explainable lead intelligence, task follow-ups, and organization-scoped CRM APIs.
+LeadFlow CRM is a client lead management system designed for agencies, freelancers, consultants, startups, and small teams. It combines public lead capture, secure admin access, explainable lead intelligence, task follow-ups, and organization-scoped CRM workflows to help businesses act quickly on inbound opportunities.
+
+This project is built to meet the real-world requirement of managing leads coming from website contact forms, tracking follow-ups, and converting promising inquiries into clients.
 
 ## Project Overview
 

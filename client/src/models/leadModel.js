@@ -3,12 +3,17 @@ export const LEAD_PRIORITIES = ['LOW', 'MEDIUM', 'HIGH'];
 export const LEAD_TEMPERATURES = ['HOT', 'WARM', 'COLD'];
 
 export function normalizeLead(lead) {
+  const leadScore = Number(lead.leadScore ?? lead.intelligence?.score ?? 0);
+  const temperature = lead.temperature || lead.intelligence?.temperature || 'COLD';
+  const nextAction = lead.nextAction || lead.intelligence?.nextAction || 'Complete the lead profile.';
+
   return {
     ...lead,
     id: lead.id || lead._id,
-    leadScore: Number(lead.leadScore ?? lead.intelligence?.score ?? 0),
-    temperature: lead.temperature || lead.intelligence?.temperature || 'COLD',
-    nextAction: lead.nextAction || lead.intelligence?.nextAction || 'Complete the lead profile.',
+    leadScore,
+    temperature,
+    nextAction,
+    intelligence: lead.intelligence || { score: leadScore, temperature, nextAction },
     conversionProbability: Number(lead.conversionProbability ?? 0),
     interactions: Array.isArray(lead.interactions) ? lead.interactions : [],
   };

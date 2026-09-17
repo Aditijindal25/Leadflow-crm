@@ -3,11 +3,16 @@ import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard';
+import Leads from './pages/Leads';
+import LeadDetail from './pages/LeadDetail';
 import Login from './pages/Login';
+import Pipeline from './pages/Pipeline';
+import Profile from './pages/Profile';
+import Reports from './pages/Reports';
 import Tasks from './pages/Tasks';
 
 function Home() {
-  return <main className="shell"><nav className="nav"><Link className="brand" to="/">LEADFLOW <span>CRM</span></Link><div className="nav-links"><Link to="/">Home</Link><Link to="/contact">Contact</Link><ThemeToggle /><Link className="button button-dark" to="/login">Login</Link></div></nav><section className="hero"><p className="eyebrow">Client relationship intelligence</p><h1>Turn every lead into an opportunity.</h1><p className="hero-copy">LeadFlow keeps your pipeline focused, your follow-ups timely, and your next best action clear.</p><div className="actions"><Link className="button button-primary" to="/contact">Get started</Link><Link className="button button-light" to="/contact">Contact us</Link></div></section></main>;
+  return <main className="shell"><nav className="nav"><Link className="brand" to="/">LEADFLOW <span>CRM</span></Link><div className="nav-links"><Link to="/">Home</Link><Link to="/contact">Contact</Link><ThemeToggle /><Link className="button button-dark" to="/login">Login</Link></div></nav><section className="hero"><p className="eyebrow">Client lead management system</p><h1>Turn every inbound inquiry into a revenue opportunity.</h1><p className="hero-copy">LeadFlow CRM centralizes lead capture, qualification, follow-up tracking, and conversion workflows so your team can move faster and close more business.</p><div className="actions"><Link className="button button-primary" to="/contact">Get started</Link><Link className="button button-light" to="/dashboard">View dashboard</Link></div></section></main>;
 }
 
 function ThemeToggle() {
@@ -16,5 +21,5 @@ function ThemeToggle() {
 }
 
 export default function App() {
-  return <ThemeProvider><AuthProvider><Routes><Route path="/" element={<Home />} /><Route path="/contact" element={<Contact />} /><Route path="/login" element={<Login />} /><Route path="/dashboard" element={<Dashboard />} /><Route path="/tasks" element={<Tasks />} /><Route path="*" element={<Home />} /></Routes></AuthProvider></ThemeProvider>;
+  return <ThemeProvider><AuthProvider><Routes><Route path="/" element={<Home />} /><Route path="/contact" element={<Contact />} /><Route path="/login" element={<Login />} /><Route path="/dashboard" element={<Dashboard />} /><Route path="/leads" element={<Leads />} /><Route path="/leads/:id" element={<LeadDetail />} /><Route path="/pipeline" element={<Pipeline />} /><Route path="/reports" element={<Reports />} /><Route path="/tasks" element={<Tasks />} /><Route path="/profile" element={<Profile />} /><Route path="*" element={<Home />} /></Routes></AuthProvider></ThemeProvider>;
 }
