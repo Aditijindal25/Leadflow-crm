@@ -6,7 +6,7 @@ export default function ProfileMenu({ user, onLogout }) {
   const initials = (user?.name || user?.email || 'User').split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
 
   const displayName = user?.name || user?.email || 'Workspace user';
-  const headerName = user?.name || 'User';
+  const headerName = user?.name || user?.email?.split('@')[0] || 'User';
   const displayRole = 'User';
   const displayEmail = user?.email || 'Account email unavailable';
 
