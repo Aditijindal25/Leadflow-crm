@@ -34,19 +34,19 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const demoUser = getStoredDemoUser();
-    if (demoModeEnabled && demoUser?.email === DEMO_USER.email) {
-      setUser(demoUser);
-      setLoading(false);
-      return;
-    }
-
     api
       .get('/auth/me')
       .then(({ data }) => {
+        localStorage.removeItem('leadflow-demo-user');
         setUser(data?.data?.user || null);
       })
       .catch(() => {
-        setUser(null);
+        if (demoModeEnabled && demoUser?.email === DEMO_USER.email) {
+          setUser(demoUser);
+        } else {
+          localStorage.removeItem('leadflow-demo-user');
+          setUser(null);
+        }
       })
       .finally(() => {
         setLoading(false);
