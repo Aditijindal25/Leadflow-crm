@@ -295,13 +295,13 @@ h1 {
 .notice.error { color: var(--error); background: var(--error-bg); }
 .crm-shell {
   position: relative;
-  padding: 0 2vw;
+  padding: 0;
 }
 .crm-layout {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
-  gap: 24px;
-  padding: 24px 0 40px;
+  gap: 20px;
+  padding: 18px 0 28px;
 }
 .crm-sidebar {
   position: relative;
@@ -435,7 +435,8 @@ h1 {
 }
 .crm-main {
   display: grid;
-  gap: 22px;
+  min-width: 0;
+  gap: 18px;
 }
 .crm-topbar {
   position: relative;
@@ -454,7 +455,7 @@ h1 {
   line-height: 1.08;
   letter-spacing: -0.035em;
 }
-.crm-topbar > div:first-child { padding-right: 300px; }
+.crm-topbar > div:first-child { min-width: 0; max-width: calc(100% - 320px); }
 .dashboard-subtitle { margin: 9px 0 0; color: var(--muted); font-size: 0.92rem; }
 .topbar-actions {
   position: absolute;
@@ -595,8 +596,8 @@ h1 {
 .summary-card {
   display: grid;
   gap: 8px;
-  min-height: 142px;
-  padding: 22px 20px;
+  min-height: 128px;
+  padding: 18px;
   border: 1px solid rgba(110, 220, 203, 0.28);
   border-radius: 18px;
   background: linear-gradient(145deg, #152b24 0%, #0f1f19 100%);
@@ -625,7 +626,7 @@ h1 {
 .intelligence-panel {
   max-width: none;
   margin: 0;
-  padding: 26px 28px;
+  padding: 22px 24px;
   border-color: rgba(110, 220, 203, 0.3);
   background: linear-gradient(135deg, #16372f 0%, #10231d 100%);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
@@ -676,7 +677,7 @@ h1 {
 .table-panel {
   max-width: none;
   margin: 0;
-  padding: 26px 28px;
+  padding: 22px 24px;
 }
 .section-head {
   display: flex;
