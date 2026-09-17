@@ -13,5 +13,6 @@ export const authRateLimiter = rateLimit({
   limit: 10,
   standardHeaders: 'draft-7',
   legacyHeaders: false,
+  skip: () => process.env.NODE_ENV !== 'production',
   message: { success: false, message: 'Too many login attempts. Please try again later.' },
 });
