@@ -295,6 +295,9 @@ h1 {
 .notice.error { color: var(--error); background: var(--error-bg); }
 .crm-shell {
   position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: 0;
 }
 .crm-layout {
@@ -729,6 +732,7 @@ td small {
 .badge-contacted { color: #92400e; background: #fef3c7; }
 @media (max-width: 640px) {
   .shell { padding: 0 24px; }
+  .crm-shell { padding: 0; }
   .nav { flex-wrap: wrap; }
   .nav-links a:not(.button) { display: none; }
   .hero { padding-top: 10vh; }
