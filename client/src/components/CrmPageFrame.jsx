@@ -8,7 +8,7 @@ import { useState } from 'react';
 export default function CrmPageFrame({ eyebrow, title, description, children }) {
   const { user, logout, loading, isAuthenticated } = useAuth();
   const { theme, toggleTheme } = useTheme();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(() => typeof window !== 'undefined' && window.innerWidth > 850);
 
   if (loading) return <main className="shell auth-loading"><div className="data-skeleton"><span /><span /><span /></div></main>;
   if (!isAuthenticated) return <Navigate to="/login" replace />;

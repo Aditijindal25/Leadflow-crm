@@ -2,7 +2,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import Contact from './pages/Contact';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/DashboardRedesign';
 import Leads from './pages/Leads';
 import LeadDetail from './pages/LeadDetail';
 import Login from './pages/Login';

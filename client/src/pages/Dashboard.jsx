@@ -40,7 +40,7 @@ export default function Dashboard() {
     { label: 'Total leads', value: totalLeads, trend: '+12.4%', tone: 'neutral' },
     { label: 'Qualified', value: qualified, trend: '+8.1%', tone: 'positive' },
     { label: 'Conversion', value: `${Math.min(100, Math.round((converted / Math.max(1, leads.length || 1)) * 100))}%`, trend: '+3.2%', tone: 'positive' },
-    { label: 'Tasks due', value: tasksDue === null ? '—' : tasksDue, trend: tasksDue === null ? 'Connect task data' : 'Today', tone: 'warning' },
+    { label: 'Tasks due', value: tasksDue === null ? '—' : tasksDue, trend: tasksDue === null ? 'No task activity to show' : 'Due today', tone: 'warning' },
   ];
   const funnel = [
     { label: 'Total', value: totalLeads, color: 'neutral' },

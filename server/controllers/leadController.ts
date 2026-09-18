@@ -138,7 +138,7 @@ export async function getLeadInsights(req: AuthenticatedRequest, res: Response) 
   const lead = await findScopedLead(req, res);
   if (!lead) return;
   const intelligence = scoreLead(lead);
-  const insight = await generateLeadInsight({ name: lead.name, company: lead.company, projectType: lead.projectType, budgetRange: lead.budgetRange, message: lead.message, ...intelligence });
+  const insight = await generateLeadInsight({ name: lead.name, company: lead.company, projectType: lead.projectType, budgetRange: lead.budgetRange, message: lead.message, status: lead.status, priority: lead.priority, ...intelligence });
   return res.json({
     success: true,
     data: insight,
@@ -149,6 +149,6 @@ export async function generateLeadSummary(req: AuthenticatedRequest, res: Respon
   const lead = await findScopedLead(req, res);
   if (!lead) return;
   const intelligence = scoreLead(lead);
-  const insight = await generateLeadInsight({ name: lead.name, company: lead.company, projectType: lead.projectType, budgetRange: lead.budgetRange, message: lead.message, ...intelligence });
+  const insight = await generateLeadInsight({ name: lead.name, company: lead.company, projectType: lead.projectType, budgetRange: lead.budgetRange, message: lead.message, status: lead.status, priority: lead.priority, ...intelligence });
   return res.json({ success: true, data: insight });
 }

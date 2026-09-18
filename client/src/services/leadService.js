@@ -90,6 +90,11 @@ export async function getLeadIntelligence(id) {
   return { score: score.data, insights: insights.data };
 }
 
+export async function getLeadSummary(id) {
+  const { data } = await api.post(`/leads/${id}/ai-summary`);
+  return data.data;
+}
+
 export async function createLead(payload) {
   const { data } = await api.post('/leads', payload);
   return normalizeLead(data.data);
