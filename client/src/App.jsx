@@ -12,7 +12,7 @@ import Reports from './pages/Reports';
 import Tasks from './pages/Tasks';
 
 function Home() {
-  return <main className="shell"><nav className="nav"><Link className="brand" to="/">LEADFLOW <span>CRM</span></Link><div className="nav-links"><Link to="/">Home</Link><Link to="/contact">Contact</Link><ThemeToggle /><Link className="button button-dark" to="/login">Login</Link></div></nav><section className="hero"><p className="eyebrow">Client lead management system</p><h1>Turn every inbound inquiry into a revenue opportunity.</h1><p className="hero-copy">LeadFlow CRM centralizes lead capture, qualification, follow-up tracking, and conversion workflows so your team can move faster and close more business.</p><div className="actions"><Link className="button button-primary" to="/contact">Get started</Link><Link className="button button-light" to="/dashboard">View dashboard</Link></div></section></main>;
+  return <main className="shell home-shell"><nav className="nav"><Link className="brand" to="/">LEADFLOW <span>CRM</span></Link><div className="nav-links"><Link to="/">Home</Link><Link to="/contact">Contact</Link><ThemeToggle /><Link className="button button-dark" to="/login">Login</Link></div></nav><section className="hero"><p className="eyebrow">Client lead management system</p><h1>Turn every inbound inquiry into a revenue opportunity.</h1><p className="hero-copy">LeadFlow CRM centralizes lead capture, qualification, follow-up tracking, and conversion workflows so your team can move faster and close more business.</p><div className="actions"><Link className="button button-primary" to="/contact">Get started</Link><Link className="button button-light" to="/dashboard">View dashboard</Link></div></section></main>;
 }
 
 function ThemeToggle() {

@@ -123,6 +123,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .nav-links a { color: #5b6e80; font-size: 0.92rem; font-weight: 600; }
 [data-theme="dark"] .nav-links a { color: #dfeae2; }
 .hero { max-width: 760px; padding: 12vh 0 18vh; }
+.home-shell .nav { padding-bottom: 12px; }
+.home-shell .brand { font-size: 1.05rem; letter-spacing: 0.18em; }
+.home-shell .hero {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 90px);
+  justify-content: flex-start;
+  padding-top: 3vh;
+  padding-bottom: 4vh;
+}
 .eyebrow {
   color: var(--accent);
   font-size: 0.74rem;
